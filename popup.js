@@ -1,14 +1,16 @@
 
-const startRecording = (exportFormat) => {
-  chrome.runtime.sendMessage({ name: 'startRecording', exportFormat: exportFormat });
+const startRecording = (outputSettings) => {
+  chrome.runtime.sendMessage({ name: 'startRecording', outputSettings: outputSettings });
 };
 
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('startRecordingButton').addEventListener('click', ()=>{
     selectedFormat = document.getElementById("exportFormat");
-    exportFormat = selectedFormat.value;
-    startRecording(exportFormat);
+    const exportFormat = selectedFormat.value;
+    selectedSize = document.getElementById("exportSize");
+    const exportSize = selectedSize.value;
+    startRecording({ exportFormat: exportFormat, exportSize: exportSize });
   });
   
 });

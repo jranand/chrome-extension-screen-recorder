@@ -1,4 +1,4 @@
-const startRecording = async (exportFormat) => {
+const startRecording = async (outputSettings) => {
   await chrome.tabs.query({'active': true, 'lastFocusedWindow': true, 'currentWindow': true}, async function (tabs) {
     // Get current tab to focus on it after start recording on recording screen tab
     const currentTab = tabs[0];
@@ -11,17 +11,19 @@ const startRecording = async (exportFormat) => {
     });
 
     // Wait for recording screen tab to be loaded and send message to it with the currentTab
-    chrome.tabs.onUpdated.addListener(async function listener(tabId, info, exportFormat) {
-      if (tabId === tab.id && info.status === 'complete') {
-        chrome.tabs.onUpdated.removeListener(listener);
+    chrome.tabs.onUpdated.addListener(async function listener(tabId, info) {
+      // console.log('Received exportFormat:'+ exportFormat);
 
+      if (tabId === tab.id && info.status === 'complete') {
         await chrome.tabs.sendMessage(tabId, {
           name: 'startRecordingOnBackground',
-          exportFormat: exportFormat,
           body: {
+            exportFormat: outputSettings.exportFormat,
+            exportSize: outputSettings.exportSize,
             currentTab: currentTab,
           },
         });
+        chrome.tabs.onUpdated.removeListener(listener);
       }
     });
   });
@@ -30,8 +32,6 @@ const startRecording = async (exportFormat) => {
 // Listen for startRecording message from popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.name === 'startRecording') {
-    const exportFormat = request.exportFormat;
-    console.log(exportFormat);
-    startRecording(exportFormat);
+    startRecording(request.outputSettings);
   }
 });

@@ -27,7 +27,22 @@ chrome.runtime.onMessage.addListener((message) => {
     return;
   }
 
- 
+  let videoResolution = [{ maxWidth: 1280}, { maxHeight: 720}];
+  let exportFormat = 'mp4';
+  let blobType = "video/mp4";
+  if(message.body.exportFormat) {
+    console.log('recordedFormat', message);
+    exportFormat = message.body.exportFormat;
+    if(exportFormat === 'webm') {
+      blobType = "video/webm";  
+    } else if(exportFormat === 'gif') {
+      blobType ="image/gif";
+    }
+  }
+
+  if(message.body.exportSize && message.body.exportSize === 'fullHD') {
+    videoResolution = [{ minWidth: 1280}, { minHeight: 720}];
+  }
   
 
   // Prompt user to choose screen or window
@@ -45,32 +60,23 @@ chrome.runtime.onMessage.addListener((message) => {
           mandatory: {
             chromeMediaSource: 'desktop',
             chromeMediaSourceId: streamId,
-          }
+          },
+          optional: videoResolution,
         }
       }).then(stream => {
         const mediaRecorder = new MediaRecorder(stream);
         let chunks = [];
-        let exportFormat = 'mp4';
-        let blobType = "video/mp4";
-        if(message.exportFormat) {
-          console.log('recordedFormat', message);
-          exportFormat = message.exportFormat;
-          if(exportFormat === 'webm') {
-            blobType = "video/webm";  
-          } else if(exportFormat === 'gif') {
-            blobType ="image/gif";
-          }
-        }
+       
        
         mediaRecorder.ondataavailable = function(e) {
           chunks.push(e.data);
-          if(exportFormat === 'gif') {
+          /*if(exportFormat === 'gif') {
             const gif = new GIF({
               workers: 2,
               quality: 10,
             });
             gif.addFrame(chunk, { delay: 200 });
-          }
+          }*/
         };
 
 
@@ -79,7 +85,7 @@ chrome.runtime.onMessage.addListener((message) => {
 
          
           const blobFile = new Blob(chunks, { type: blobType });
-          
+           
           //const base64 = await fetchBlob(URL.createObjectURL(blobFile));
           const url = URL.createObjectURL(blobFile);
           if(exportFormat !== 'gif'){
@@ -88,9 +94,7 @@ chrome.runtime.onMessage.addListener((message) => {
               filename: 'screen_recording.'+ exportFormat,
               saveAs: true
             });
-          } else {
-            gif.download();
-          }
+          } 
           // When recording is finished, send message to current tab content script with the base64 video
           /*chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             const tabWhenRecordingStopped = tabs[0];
