@@ -1,40 +1,57 @@
 <!DOCTYPE html>
+
 <head>
-  <link rel="stylesheet" href="bulma.css" />
+  <link rel="stylesheet" href="css/bulma.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
   <script src="popup.js"></script>
 </head>
 
 <body>
-  <div class="container hero pt-5 pb-5">
-    <div class="columns is-mobile is-centered">
-      <div class="column pt-5 pb-5">
-        <h2 class="has-text-centered is-size-4">
-            MinimalRecorder
-        </h2>
-        <p class="has-text-centered mt-3 mb-3 has-text-grey-light	 is-size-5">Video Size</p>
-        <div class="control mt-3 mb-3 is-centered has-text-centered">
-          <div class="select is-small">
-            <select id="exportSize">
-              <option value="720p">720p HD</option>
-              <option value="fullHD">Full HD or higher</option>
-            </select>
+  <nav class="level has-nav-border is-fixed-top pt-4 pb-4">
+    <p class="level-item is-size-6 has-text-centered logo-font">
+      <img src="images/48.png" alt="logo" class="logo">&nbsp; Minimal Screen Recorder
+    </p>
+  </nav>
+  <div class="container px-3 py-3">
+    <div class="columns is-centered">
+      <div class="column is-12">
+        <div class="field is-horizontal">
+
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded">
+                <p class="help">Quality</p>
+                <div class="select is-small">
+                  <select id="exportSize">
+                    <option value="720p">720p HD</option>
+                    <option value="fullHD">Full HD or higher</option>
+                  </select>
+                </div>
+              </p>
+    
+            </div>
+            <div class="field">
+              <p class="control is-expanded" >
+                <p class="help">Save As</p>
+                <div class="select is-small">
+                  <select id="exportFormat">
+                    <option>Export Video As</option>
+                    <option value="mp4" selected>MP4</option>
+                    <option value="webm">WebM</option>
+                  </select>
+                </div>
+              </p>
+            </div>
           </div>
         </div>
-        <p class="has-text-centered mt-3 mb-3 has-text-grey-light	 is-size-5">Save video as</p>
-        <div class="control mt-3 mb-3 is-centered has-text-centered">
-          <div class="select is-small">
-            <select id="exportFormat">
-              <option value="mp4">MP4</option>
-              <option value="webm">WebM</option>
-            </select>
-          </div>
-        </div>
-        <div class="control mt-3 mb-3 is-centered has-text-centered">
+    
+        <div class="control mt-3 mb-5 is-centered has-text-centered">
           <div class="buttons mt-3 mb-3 is-centered">
-            <button class="button  is-info" id="startRecordingButton">Start recording</button>
+            <button class="button  btn-primary-gradient" id="startRecordingButton">Start recording</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
+   
 </body>

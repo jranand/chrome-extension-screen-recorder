@@ -1,0 +1,45 @@
+.logo {
+  height: 30px;
+}
+
+.logo-font {
+  font-family: Comfortaa, cursive;
+  font-weight: bold;
+}
+
+.bg-primary {
+  background-color: #501AEA;
+  background: linear-gradient(to right, #501AEA 1%, #2D29DB 99%);
+}
+
+.btn-primary-gradient {
+  background: linear-gradient(to right, #501AEA 1%, #2D29DB 99%);
+  border: none;
+  color: #fff;
+}
+
+.btn-primary-gradient:focus,
+.btn-primary-gradient:hover {
+  opacity: 0.85;
+  color: #fff;
+}
+
+.has-nav-border {
+  border-bottom: 1px solid #dbdbdb !important;
+}
+
+
+.field.is-horizontal {
+    display: flex !important;
+}
+
+.field-body {
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 5;
+    flex-shrink: 1;
+}
+
+.field-body>.field:not(:last-child) {
+    margin-right: 0.75rem;
+}

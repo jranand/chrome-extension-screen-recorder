@@ -1,13 +1,23 @@
 {
-  "name": "Window Recording",
-  "description": "Minimal example for recording any screen/window in manifest V3, allowing redirection on current tab",
+  "name": "Minimal Screen Recorder - Free",
+  "description": "Capture or Record your screen  as video and export as .MP4 or .WebM",
   "version": "1.0",
   "manifest_version": 3,
   "action":{
+    "default_icon": {
+      "16": "images/16.png",  
+      "48": "images/48.png",  
+      "128": "images/128.png" 
+    },
     "default_popup":"popup.html"
   },
   "background": {
     "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "images/16.png",  
+    "48": "images/48.png",  
+    "128": "images/128.png" 
   },
   "content_scripts": [
     {
