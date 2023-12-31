@@ -1,7 +1,7 @@
 {
   "name": "Minimal Screen Recorder - Free",
   "description": "Capture or Record your screen  as video and export as .MP4 or .WebM",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 3,
   "action":{
     "default_icon": {
@@ -25,5 +25,5 @@
       "js":["content.js"]
     }
   ],
-  "permissions": ["tabs", "activeTab", "desktopCapture", "downloads"]
+  "permissions": ["desktopCapture", "downloads"]
 }
