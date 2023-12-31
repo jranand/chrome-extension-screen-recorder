@@ -1,4 +1,19 @@
-### Minimal Screen Recorder
+### Chrome Extension Screen Recorder 
+
+This browser extension template helps you build chrome extension apps. 
+
+![ChromeExtensionScreenRecorder](https://lh3.googleusercontent.com/IY2vENUW6OnvHtqp9GkZJx_MGna1_L-xMdF9r02-UP-YX4iXsDh4ZaWXFGIj4RmJgmTPNdxw4KL55WjO3YKJUrO7ISM=s1280-w1280-h800)
+
+
+### Demo
+
+[Live Chrome Extension Preview](https://chromewebstore.google.com/u/2/detail/minimal-screen-recorder-f/nhnmpgbmdachgljegmenphljmhllepnj?hl=en)
+
+
+### Features
+
+1. Capture or Record your screen  as video 
+2. Export as .MP4 or .WebM
 
 
 ## Installation
